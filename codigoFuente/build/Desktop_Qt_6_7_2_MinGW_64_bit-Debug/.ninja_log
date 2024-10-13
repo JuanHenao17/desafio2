@@ -1,0 +1,16 @@
+# ninja log v6
+6	332	7504788841861883	CMakeFiles/codigoFuente.dir/main.cpp.obj	9215756a56de8184
+46	431	7504788611483263	CMakeFiles/codigoFuente.dir/RedNacional.cpp.obj	461a3fa224d6be30
+333	440	7504788845122610	codigoFuente.exe	909d2267c94ccb71
+24	664	7504843809370710	CMakeFiles/codigoFuente.dir/EstacionServicio.cpp.obj	fa238674fb56ffe9
+6	352	7504844926957095	CMakeFiles/codigoFuente.dir/main.cpp.obj	9215756a56de8184
+6	468	7504845735326732	CMakeFiles/codigoFuente.dir/main.cpp.obj	9215756a56de8184
+20	689	7504845735466764	CMakeFiles/codigoFuente.dir/EstacionServicio.cpp.obj	fa238674fb56ffe9
+6	393	7504847564232632	CMakeFiles/codigoFuente.dir/main.cpp.obj	9215756a56de8184
+21	616	7504847564372663	CMakeFiles/codigoFuente.dir/EstacionServicio.cpp.obj	fa238674fb56ffe9
+617	730	7504847570334006	codigoFuente.exe	f9cedeee3275dfb2
+6	348	7504854489736972	CMakeFiles/codigoFuente.dir/main.cpp.obj	9215756a56de8184
+349	476	7504854493167747	codigoFuente.exe	f9cedeee3275dfb2
+6	554	7504863694225720	CMakeFiles/codigoFuente.dir/main.cpp.obj	9215756a56de8184
+17	595	7504863694335746	CMakeFiles/codigoFuente.dir/RedNacional.cpp.obj	461a3fa224d6be30
+37	653	7504863694535788	CMakeFiles/codigoFuente.dir/EstacionServicio.cpp.obj	fa238674fb56ffe9
