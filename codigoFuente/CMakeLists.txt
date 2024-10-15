@@ -9,7 +9,9 @@ add_executable(codigoFuente main.cpp
     RedNacional.cpp
     RedNacional.h
     EstacionServicio.cpp
-    EstacionServicio.h)
+    EstacionServicio.h
+    Surtidor.cpp
+    Surtidor.h)
 
 include(GNUInstallDirs)
 install(TARGETS codigoFuente

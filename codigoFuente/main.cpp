@@ -21,11 +21,25 @@ void mostrarMenu() {
 
 }
 
+void mostrarSubMenu() {
+
+    cout << endl << "=== SubMenu Gestion Surtidores ===" << endl;
+    cout << "1. Agregar surtidor a una E/S" << endl;
+    cout << "2. Eliminar surtidor a una E/S" << endl;
+    cout << "3. Activar surtidor a una E/S" << endl;
+    cout << "4. Desactivar surtidor a una E/S" << endl;
+    cout << "Seleccione una opcion: ";
+
+}
+
 int main()
 {
+    unsigned short idSurt;
+    unsigned short idES;
+    unsigned short opcion2;
     unsigned short opcion;
     RedNacional redTerMax;
-    EstacionServicio estacion;
+    EstacionServicio* estacion;
 
     do {
 
@@ -35,6 +49,7 @@ int main()
 
         switch (opcion) {
         case 1:
+
             redTerMax.crearES();
             redTerMax.mostrarEstaciones();
 
@@ -46,6 +61,7 @@ int main()
             redTerMax.mostrarEstaciones();
 
             break;
+
         case 3:
             // Calcular y mostrar el monto total de ventas
             break;
@@ -57,7 +73,52 @@ int main()
             break;
 
         case 5:
-            // Submenú para gestionar surtidores
+
+            cout << "Ingrese el ID de la estacion de servicio: ";
+            cin >> idES;
+            estacion = redTerMax.obtenerEstacionPorID(idES);
+
+            if(estacion != nullptr){
+
+                mostrarSubMenu();
+                cin >> opcion2;
+
+                switch(opcion2){
+                case 1:
+                    estacion -> crearSurt();
+                    estacion -> mostrarSurtidores();
+                    break;
+
+                case 2:
+
+                    cout << "Ingrese el ID del surtidor a eliminar: ";
+                    cin >> idSurt;
+                    estacion -> eliminarSurtidor(idSurt);
+                    estacion -> mostrarSurtidores();
+
+                    break;
+
+                case 3:
+
+                    cout << "Ingrese el ID del surtidor que quiere activar: ";
+                    cin >> idSurt;
+                    estacion -> activarSurtidor(idSurt);
+
+                    break;
+
+                case 4:
+                    cout << "Ingrese el ID del surtidor que quiere desactivar: ";
+                    cin >> idSurt;
+                    estacion -> desactivarSurtidor(idSurt);
+
+                default:
+                    cout << "Opcion no valida en el submenu." << endl;
+                    break;
+                }
+            } else{
+                cout << "Estacion de servicio no encontrada." << endl;
+            }
+
             break;
         case 6:
             // Consultar histórico de transacciones

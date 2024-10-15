@@ -6,7 +6,9 @@ using namespace std;
 unsigned short EstacionServicio::count=0;
 
 EstacionServicio::EstacionServicio(const string& nombreEst, const string& gerenteEst, const string& ubicacionEst, const string& coordsEst)
-    : nombre(nombreEst), gerente(gerenteEst), ubicacion(ubicacionEst), coords(coordsEst) {
+    : nombre(nombreEst), gerente(gerenteEst), ubicacion(ubicacionEst), coords(coordsEst), capacidad(2), numSurtidores(0) {
+
+    surtidores = new Surtidor[capacidad];
 
     count++;
     ID = count;
@@ -37,6 +39,8 @@ EstacionServicio::EstacionServicio(){
 
 EstacionServicio::~EstacionServicio() {
 
+    delete[] surtidores;
+
 }
 
 string EstacionServicio::getNombre(){
@@ -57,6 +61,18 @@ string EstacionServicio::getcoords(){
 
 unsigned short EstacionServicio::getID(){
     return ID;
+}
+
+unsigned short EstacionServicio::getTanqueRegular(){
+    return tanqueRegular;
+}
+
+unsigned short EstacionServicio::getTanquePremium(){
+    return tanquePremium;
+}
+
+unsigned short EstacionServicio::getTanqueEcoExtra(){
+    return tanqueEcoExtra;
 }
 
 void EstacionServicio::setRegular(int nuevoR){
@@ -113,4 +129,103 @@ EstacionServicio& EstacionServicio::operator=(const EstacionServicio& estacionA)
     this->tanqueEcoExtra = estacionA.tanqueEcoExtra;
 
     return *this;
+}
+
+void EstacionServicio::crearSurt(){
+
+    if (numSurtidores == 12){
+        cout << "Se han creado el maximo de surtidores, no pueden anadir mas." << endl;
+        return;
+    }
+
+    else if(numSurtidores >= capacidad){
+        expandir();
+    }
+
+    surtidores[numSurtidores] = Surtidor(tanqueRegular, tanquePremium, tanqueEcoExtra);
+    numSurtidores++;
+    cout << "Surtidor creado correctamente!" << endl;
+}
+
+void EstacionServicio::expandir() {
+
+    capacidad++;
+    Surtidor* nuevoArreglo = new Surtidor[capacidad];
+
+    // Copia las estaciones existentes al nuevo arreglo
+    for (int i = 0; i < numSurtidores; i++) {
+        nuevoArreglo[i] = surtidores[i];
+    }
+
+    delete[] surtidores; // Libera la memoria del arreglo viejo
+    surtidores = nuevoArreglo; // Actualiza el puntero al nuevo arreglo
+}
+
+void EstacionServicio::eliminarSurtidor(unsigned short idSurtidor) {
+
+    bool encontrado = false;
+    for (unsigned short i = 0; i < numSurtidores; i++) {
+        if (surtidores[i].getIDS() == idSurtidor) {
+            encontrado = true;
+
+            for (unsigned short j = i; j < numSurtidores - 1; j++) {
+                surtidores[j] = surtidores[j + 1];
+            }
+            numSurtidores--;
+            cout << "Surtidor eliminado correctamente." << endl;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontro el surtidor con el ID proporcionado." << endl;
+    }
+}
+
+void EstacionServicio::mostrarSurtidores() {
+
+    if (numSurtidores == 0) {
+        cout << "No hay surtidores en esta estación." << endl;
+    } else {
+        for (unsigned short i = 0; i < numSurtidores; i++) {
+            cout << "Surtidor ID: " << surtidores[i].getIDS() << endl;
+        }
+    }
+}
+
+void EstacionServicio::activarSurtidor(unsigned short idSurtidor) {
+    for (int i = 0; i < numSurtidores; ++i) {
+        if (surtidores[i].getIDS() == idSurtidor) {
+
+            if (surtidores[i].getActivo() == true){
+                cout << "Surtidor " << idSurtidor << " ya se encuentra activo" << endl;
+                return;
+            }
+            else{
+                surtidores[i].activar();
+                cout << "Surtidor " << idSurtidor << " activado." << endl;
+                return;
+            }
+        }
+    }
+    cout << "Surtidor con ID " << idSurtidor << " no encontrado." << endl;
+}
+
+void EstacionServicio::desactivarSurtidor(unsigned short idSurtidor) {
+    for (int i = 0; i < numSurtidores; ++i) {
+        if (surtidores[i].getIDS() == idSurtidor) {
+
+            if (surtidores[i].getActivo() == false){
+                cout << "Surtidor " << idSurtidor << " ya se encuentra desactivado" << endl;
+                return;
+            }
+
+            else{
+                surtidores[i].desactivar();
+                cout << "Surtidor " << idSurtidor << " desactivado." << endl;
+                return;
+            }
+        }
+    }
+    cout << "Surtidor con ID " << idSurtidor << " no encontrado." << endl;
 }

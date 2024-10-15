@@ -1,5 +1,6 @@
 #ifndef ESTACIONSERVICIO_H
 #define ESTACIONSERVICIO_H
+#include "Surtidor.h"
 #include <string>
 
 using namespace std;
@@ -19,6 +20,9 @@ private:
     unsigned short tanquePremium;
     unsigned short tanqueEcoExtra;
 
+    Surtidor *surtidores;
+    unsigned short numSurtidores;
+    unsigned short capacidad;
 
 public:
 
@@ -31,12 +35,23 @@ public:
     string getubicacion();
     string getcoords();
     unsigned short getID();
+    unsigned short getTanqueRegular();
+    unsigned short getTanquePremium();
+    unsigned short getTanqueEcoExtra();
+
     void setRegular(int nuevoR);
     void setPremium(int nuevoP);
     void setEcoExtra(int nuevoE);
 
     void FijarCapacidadTanques();
     EstacionServicio& operator=(const EstacionServicio& estacion);
+    void crearSurt();
+    void expandir();
+    void eliminarSurtidor(unsigned short idSurtidor);
+    void mostrarSurtidores();
+    void activarSurtidor(unsigned short idSurtidor);
+    void desactivarSurtidor(unsigned short idSurtidor);
+
 };
 
 

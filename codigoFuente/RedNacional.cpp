@@ -175,16 +175,25 @@ void RedNacional::FijarCapacidadTanques(){
     int nuevaCapacidadP;
     int nuevaCapacidadE;
 
-    cout << endl << "Introduzca el nuevo precio del combustible Regular (valor entero entre 100 y 200 litros): " << endl;
+    cout << endl << "Introduzca la nueva capacidad del combustible Regular (valor entero entre 100 y 200 litros): " << endl;
     cin >> nuevaCapacidadR;
     estaciones[indice].setRegular(nuevaCapacidadR);
 
-    cout << endl << "Introduzca el nuevo precio del combustible Premium (valor entero entre 100 y 200 litros): " << endl;
+    cout << endl << "Introduzca la nueva capacidad del combustible Premium (valor entero entre 100 y 200 litros): " << endl;
     cin >> nuevaCapacidadP;
     estaciones[indice].setPremium(nuevaCapacidadP);
 
-    cout << endl << "Introduzca el nuevo precio del combustible EcoExtra (valor entero entre 100 y 200 litros): " << endl;
+    cout << endl << "Introduzca la nueva capacidad del combustible EcoExtra (valor entero entre 100 y 200 litros): " << endl;
     cin >> nuevaCapacidadE;
     estaciones[indice].setEcoExtra(nuevaCapacidadE);
 
+}
+
+EstacionServicio* RedNacional::obtenerEstacionPorID(unsigned short id) {
+    for (int i = 0; i < num_estaciones; ++i) {
+        if (estaciones[i].getID() == id) {
+            return &estaciones[i];
+        }
+    }
+    return nullptr; // Si no se encuentra la estación, devuelve nullptr
 }

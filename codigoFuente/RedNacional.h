@@ -33,6 +33,7 @@ public:
     void eliminarES();
     void mostrarEstaciones();
     void FijarCapacidadTanques();
+    EstacionServicio* obtenerEstacionPorID(unsigned short id);
 
 };
 
