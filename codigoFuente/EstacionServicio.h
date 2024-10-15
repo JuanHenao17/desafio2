@@ -23,9 +23,21 @@ private:
 public:
 
     EstacionServicio(const string& nombreEst, const string& gerenteEst, const string& ubicacionEst, const string& coordsEst);
+    EstacionServicio();
+    ~EstacionServicio();
 
+    string getNombre();
+    string getGerente();
+    string getubicacion();
+    string getcoords();
+    unsigned short getID();
+    void setRegular(int nuevoR);
+    void setPremium(int nuevoP);
+    void setEcoExtra(int nuevoE);
+
+    void FijarCapacidadTanques();
+    EstacionServicio& operator=(const EstacionServicio& estacion);
 };
 
-unsigned short EstacionServicio::count=0;
 
 #endif // ESTACIONSERVICIO_H

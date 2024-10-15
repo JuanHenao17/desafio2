@@ -15,7 +15,8 @@ void mostrarMenu() {
     cout << "6. Consultar historico de transacciones" << endl;
     cout << "7. Simular venta de combustible" << endl;
     cout << "8. Verificar fugas de combustible" << endl;
-    cout << "9. Salir" << endl;
+    cout << "9. Asignar capacidades del tanque de suministro" << endl;
+    cout << "10. Salir" << endl;
     cout << "Seleccione una opcion: ";
 
 }
@@ -24,6 +25,7 @@ int main()
 {
     unsigned short opcion;
     RedNacional redTerMax;
+    EstacionServicio estacion;
 
     do {
 
@@ -34,10 +36,15 @@ int main()
         switch (opcion) {
         case 1:
             redTerMax.crearES();
+            redTerMax.mostrarEstaciones();
+
             break;
 
         case 2:
-            // Llamar a la función para eliminar una estación de servicio
+
+            redTerMax.eliminarES();
+            redTerMax.mostrarEstaciones();
+
             break;
         case 3:
             // Calcular y mostrar el monto total de ventas
@@ -62,12 +69,18 @@ int main()
             // Verificar fugas de combustible
             break;
         case 9:
+
+            redTerMax.FijarCapacidadTanques();
+
+            break;
+        case 10:
             cout << "Saliendo del programa..." << endl;
             break;
+
         default:
             cout << endl << "Opcion no valida. Intente nuevamente." << endl;
         }
-    } while (opcion != 9);
+    } while (opcion != 10);
 
     return 0;
 }
