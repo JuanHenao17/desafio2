@@ -63,7 +63,8 @@ int main()
             break;
 
         case 3:
-            // Calcular y mostrar el monto total de ventas
+           redTerMax.calcularMontoTotalVentas();
+    cout <<"Monto total de ventas: " << totalVentas << endl;
             break;
 
         case 4:
@@ -121,7 +122,11 @@ int main()
 
             break;
         case 6:
-            // Consultar histórico de transacciones
+            redTerMax.registrarTransaccion(10.0, "Tarjeta de crédito");
+            redTerMax.registrarTransaccion(20.0, "Efectivo");
+            redTerMax.registrarTransaccion(30.0, "Tarjeta de débito");
+            // Mostrar historial
+            redTerMax.mostrarHistoricoTransacciones();
             break;
         case 7:
             // Simular venta de combustible
