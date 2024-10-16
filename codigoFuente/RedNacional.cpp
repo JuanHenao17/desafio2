@@ -197,3 +197,15 @@ EstacionServicio* RedNacional::obtenerEstacionPorID(unsigned short id) {
     }
     return nullptr; // Si no se encuentra la estación, devuelve nullptr
 }
+
+double RedNacional::calcularMontoTotalVentas() {
+    double total = 0.0;
+    for (unsigned short i = 0; i < num_estaciones; i++) {
+        for (unsigned short j = 0; j < estaciones[i].numSurtidores; j++) {
+            for (const auto& trans : estaciones[i].surtidores[j].historicoTransacciones) {
+                total += trans.monto;
+            }
+        }
+    }
+    return total;
+}
