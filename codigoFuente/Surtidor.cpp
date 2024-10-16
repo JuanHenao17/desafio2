@@ -74,3 +74,20 @@ Surtidor& Surtidor::operator=(const Surtidor& surtidorA){ //Sobrecarga del opera
 
     return *this;
 }
+void Surtidor::registrarTransaccion(double monto, const string& metodoPago) {
+    Transaccion nuevaTransaccion;
+    nuevaTransaccion.fecha = "Fecha actual"; // No olvidar poner fecha actual o agregar funcion que lo haga
+    nuevaTransaccion.hora = "Hora actual"; // No olvidar poner hora actual o agregar funcion que lo haga
+    nuevaTransaccion.monto = monto;
+    nuevaTransaccion.metodoPago = metodoPago;
+    historicoTransacciones.push_back(nuevaTransaccion);
+}
+
+void Surtidor::mostrarHistoricoTransacciones() {
+    for (const auto& trans : historicoTransacciones) {
+        cout << "Fecha: " << trans.fecha << ", Hora: " << trans.hora
+             << 
+          
+", Monto: " << trans.monto << ", Metodo de Pago: " << trans.metodoPago << endl;
+    }
+}
