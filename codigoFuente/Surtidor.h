@@ -22,7 +22,7 @@ private:
     unsigned short CapacidadRegular;
     unsigned short CapacidadPremium;
     unsigned short CapacidadEcoExtra;
-    bool verificarFuga();
+   
 public:
 
     Surtidor(unsigned short capacidadReg, unsigned short capacidadPrem, unsigned short capacidadEco);
