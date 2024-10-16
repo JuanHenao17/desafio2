@@ -1,6 +1,6 @@
 #ifndef SURTIDOR_H
 #define SURTIDOR_H
-
+#include <vector>
 #include <string>
 
 using namespace std;
@@ -18,11 +18,10 @@ private:
     string Metodo_Pago;
     string Doc;
     double Dinero;
-
     unsigned short CapacidadRegular;
     unsigned short CapacidadPremium;
     unsigned short CapacidadEcoExtra;
-   
+    vector<Transaccion> historicoTransacciones;
 public:
 
     Surtidor(unsigned short capacidadReg, unsigned short capacidadPrem, unsigned short capacidadEco);
