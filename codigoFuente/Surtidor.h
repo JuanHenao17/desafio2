@@ -17,9 +17,11 @@ private:
     unsigned short CapacidadRegular;
     unsigned short CapacidadPremium;
     unsigned short CapacidadEcoExtra;
+
     double precioRegular;
     double precioPremium;
     double precioEcoExtra;
+
 
 public:
 
