@@ -19,6 +19,9 @@ private:
     unsigned short tanqueRegular;
     unsigned short tanquePremium;
     unsigned short tanqueEcoExtra;
+    double precioRegular;
+    double precioPremium;
+    double precioEcoExtra;
 
     Surtidor *surtidores;
     unsigned short numSurtidores;
@@ -26,7 +29,7 @@ private:
 
 public:
 
-    EstacionServicio(const string& nombreEst, const string& gerenteEst, const string& ubicacionEst, const string& coordsEst);
+    EstacionServicio(const string& nombreEst, const string& gerenteEst, const string& ubicacionEst, const string& coordsEst, double _precioR, double _precioP,  double _precioE);
     EstacionServicio();
     ~EstacionServicio();
 
@@ -51,6 +54,8 @@ public:
     void mostrarSurtidores();
     void activarSurtidor(unsigned short idSurtidor);
     void desactivarSurtidor(unsigned short idSurtidor);
+    Surtidor* selectSurtidor();
+    void calcularMonto();
 
 };
 

@@ -32,10 +32,26 @@ void RedNacional::setPrecioRegular(double precio){
 }
 
 void RedNacional::setPrecioPremium(double precio){
-    precioPremium = precio; }
+
+    if (precio > 0){
+        precioPremium = precio;
+    }
+
+    else{
+        cout << endl << "El precio debe ser mayor a 0 " << endl;
+    }
+}
 
 void RedNacional::setPrecioEcoExtra(double precio){
-    precioEcoExtra = precio; }
+
+    if (precio > 0){
+        precioEcoExtra = precio;
+    }
+
+    else{
+        cout << endl << "El precio debe ser mayor a 0 " << endl;
+    }
+}
 
 double RedNacional::getPrecioRegular(){
     return precioRegular; }
@@ -89,10 +105,26 @@ void RedNacional::crearES(){
     cout << "Introduzca la region a la que pertenece la estacion " << endl;
     getline(cin, _ubicacion);
 
+    if (_ubicacion != "Norte" && _ubicacion != "norte" && _ubicacion != "Centro" && _ubicacion != "centro" && _ubicacion != "Sur" && _ubicacion != "sur"){
+        cout << "ERROR: " << _ubicacion << " no es una region valida." << endl;
+        return;
+    }
+
+
     cout << "Introduzca las coordenadas: " << endl;
     getline(cin, _coords);
 
-    EstacionServicio est(_nombre, _gerente, _ubicacion, _coords);
+    for (int i = 0; i < num_estaciones; ++i) {
+
+        if(estaciones[i].getcoords() == _coords){
+
+            cout << "ERROR: Ya existe una estacion de servicio en esas coordenadas. " << endl;
+            return;
+        }
+
+    }
+
+    EstacionServicio est(_nombre, _gerente, _ubicacion, _coords, precioRegular, precioPremium, precioEcoExtra);
 
     estaciones[num_estaciones] = est;
     num_estaciones++;
@@ -141,7 +173,6 @@ void RedNacional::eliminarES(){
         cout << "No se encontro ninguna estacion con el codigo proporcionado." << endl;
         return;
     }
-
     for (int i = indice; i < num_estaciones - 1; i++) {
         estaciones[i] = estaciones[i + 1];
     }

@@ -5,7 +5,7 @@
 using namespace std;
 unsigned short EstacionServicio::count=0;
 
-EstacionServicio::EstacionServicio(const string& nombreEst, const string& gerenteEst, const string& ubicacionEst, const string& coordsEst)
+EstacionServicio::EstacionServicio(const string& nombreEst, const string& gerenteEst, const string& ubicacionEst, const string& coordsEst, double _precioR, double _precioP,  double _precioE)
     : nombre(nombreEst), gerente(gerenteEst), ubicacion(ubicacionEst), coords(coordsEst), capacidad(2), numSurtidores(0) {
 
     surtidores = new Surtidor[capacidad];
@@ -21,6 +21,25 @@ EstacionServicio::EstacionServicio(const string& nombreEst, const string& gerent
     tanquePremium = distribucion(gen); // Litros
     tanqueEcoExtra = distribucion(gen); // Litros
 
+    if(ubicacionEst == "Norte" || ubicacionEst == "norte"){
+        precioRegular = _precioR * 1.05;
+        precioPremium = _precioP * 1.05;
+        precioEcoExtra = _precioE * 1.05;
+    }
+
+    else if(ubicacionEst == "Centro" || ubicacionEst == "centro"){
+        precioRegular = _precioR;
+        precioPremium = _precioP;
+        precioEcoExtra = _precioE;
+    }
+
+    else if(ubicacionEst == "Sur" || ubicacionEst == "sur"){
+
+        precioRegular = _precioR * 0.97;
+        precioPremium = _precioP * 0.97;
+        precioEcoExtra = _precioE * 0.97;
+    }
+
 }
 
 EstacionServicio::EstacionServicio(){
@@ -35,6 +54,9 @@ EstacionServicio::EstacionServicio(){
     tanquePremium = 0;
     tanqueEcoExtra = 0;
 
+    precioRegular = 0;
+    precioPremium = 0;
+    precioEcoExtra = 0;
 }
 
 EstacionServicio::~EstacionServicio() {
@@ -127,6 +149,9 @@ EstacionServicio& EstacionServicio::operator=(const EstacionServicio& estacionA)
     this->tanqueRegular = estacionA.tanqueRegular;
     this->tanquePremium = estacionA.tanquePremium;
     this->tanqueEcoExtra = estacionA.tanqueEcoExtra;
+    this->precioRegular = estacionA.precioRegular;
+    this->precioPremium = estacionA.precioPremium;
+    this->precioEcoExtra = estacionA.precioEcoExtra;
 
     return *this;
 }
@@ -142,7 +167,7 @@ void EstacionServicio::crearSurt(){
         expandir();
     }
 
-    surtidores[numSurtidores] = Surtidor(tanqueRegular, tanquePremium, tanqueEcoExtra);
+    surtidores[numSurtidores] = Surtidor(tanqueRegular, tanquePremium, tanqueEcoExtra, precioRegular, precioPremium, precioEcoExtra);
     numSurtidores++;
     cout << "Surtidor creado correctamente!" << endl;
 }
@@ -228,4 +253,33 @@ void EstacionServicio::desactivarSurtidor(unsigned short idSurtidor) {
         }
     }
     cout << "Surtidor con ID " << idSurtidor << " no encontrado." << endl;
+}
+
+Surtidor* EstacionServicio::selectSurtidor(){
+
+    for (int i = 0; i < numSurtidores; ++i) {
+        if(surtidores[i].getActivo() == true){
+            return &surtidores[i];
+        }
+    }
+
+    return nullptr; //Si no hay surtidores activo retorna null
+}
+
+void EstacionServicio::calcularMonto(){
+
+    double montoR = 0;
+    double montoP = 0;
+    double montoE = 0;
+
+    for (int i = 0; i < numSurtidores; ++i) {
+        montoR += surtidores[i].getDineroR();
+        montoP += surtidores[i].getDineroP();
+        montoE += surtidores[i].getDineroE();
+    }
+
+    cout << "Monto combustible Regular: " << montoR << " pesos" << endl;
+    cout << "Monto combustible Premium: " << montoP << " pesos" << endl;
+    cout << "Monto combustible EcoExtra: " << montoE << " pesos" << endl;
+
 }
