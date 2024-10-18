@@ -120,3 +120,4 @@ void Surtidor::simularVenta() {
     cout << "Valor: " << precio << " pesos." <<endl;
 
 }
+
