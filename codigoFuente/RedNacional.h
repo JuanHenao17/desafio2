@@ -13,7 +13,7 @@ private:
     double precioRegular;
     double precioPremium;
     double precioEcoExtra;
-
+    double calcularMontoTotalVentas();
 public:
 
     RedNacional();
