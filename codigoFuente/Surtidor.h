@@ -10,6 +10,7 @@ private:
     unsigned short id;
     static unsigned short contadorID;
     bool activo;
+
     double dineroRegular;
     double dineroPremium;
     double dineroEcoExtra;
@@ -21,7 +22,6 @@ private:
     double precioRegular;
     double precioPremium;
     double precioEcoExtra;
-
 
 public:
 
